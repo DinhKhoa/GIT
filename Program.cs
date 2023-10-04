@@ -1,8 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace A
+﻿namespace A
 {
     public class Program
     {
@@ -21,6 +17,7 @@ namespace A
                 int value = int.Parse(Console.ReadLine());
                 arrays.Add(value);
             }
+            
             // Hien thi danh sach mang
             // snippet
             // index

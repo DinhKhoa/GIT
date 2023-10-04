@@ -1,4 +1,4 @@
-﻿namespace A
+﻿namespace Array
 {
     public class Program
     {
@@ -16,22 +16,19 @@
                 Console.Write("Nhap phan tu thu {0}: ", i);
                 int value = int.Parse(Console.ReadLine());
                 arrays.Add(value);
-            }
-            
+            }        
             // Hien thi danh sach mang
             // snippet
-            // index
             for (int i = 0;i < number; i++)
             {
                 Console.WriteLine("So thu {0} la: {1}",i , arrays[i]);
             }
             // pull/ merge request
-            Console.Write("Tong la: " + TinhTongSoNguyenTo(arrays));
+            Console.Write("Tong la: " + TinhTongSoHoanHao(arrays));
             // ham tinh tong
             // ham tinh tong so nguyen to trong mang
             // ham tinh tong so hoan hao
             // 6 la so hoan hao vi` 6 co uoc la 1 2 3. va 1 + 2 +3 = 6
-            // sang so nguyen to
         }
 
         static public int TinhTong(List<int> arrays)
@@ -51,19 +48,29 @@
             {
                 // Kiem tra so nguyen to
                 int SoUoc = 0;
-                for (int j = 1; j <= arrays[i]; j++)
+                for (int j = 2; j <= (arrays[i]/2); j++)
                 {
-                    if (arrays[i] % j == 0)
-                    {
-                        SoUoc += 1;
-                    }
+                    if (arrays[i] % j == 0) SoUoc += 1;
                 } 
-                if (SoUoc == 2)
-                {
-                    sum += arrays[i];
-                }
+                if (SoUoc == 0) sum += arrays[i];
             }
             return sum;
         }
+
+        static public int TinhTongSoHoanHao(List<int> arrays)
+        {
+            int sum = 0;
+            for (int i = 0;i < arrays.Count; i++)
+            {
+                int TongUoc = 0;
+                for (int j = 1; j < arrays[i]; j++)
+                {
+                    if (arrays[i] % j == 0) TongUoc += j;
+                }
+                if (arrays[i] == TongUoc) sum += arrays[i];
+            }
+            return sum;
+        }
+
     }
 }

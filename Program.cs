@@ -24,7 +24,8 @@
                 Console.WriteLine("So thu {0} la: {1}",i , arrays[i]);
             }
             // pull/ merge request
-            Console.Write("Tong la: " + TinhTongSoHoanHao(arrays));
+            Console.Write("Tong la: " + DemSoChinhPhuong(arrays));
+            //Console.Write("Gia tri lon nhat la " + GTLN(arrays))
             // ham tinh tong
             // ham tinh tong so nguyen to trong mang
             // ham tinh tong so hoan hao
@@ -72,5 +73,66 @@
             return sum;
         }
 
+        static public int TinhTrungBinhCacSoLeViTriChan(List<int> arrays)
+        {
+            int sum = 0; 
+            int dem = 0;
+            for (int i = 0; i < arrays.Count; i++)
+            {
+                if ( i % 2 == 0)
+                {
+                    if (arrays[i] % 2 != 0)
+                    {
+                        sum += arrays[i];
+                        dem += 1;
+                    }
+                }
+            }
+            return ( sum / dem );
+        }
+
+        static public int GTLN(List<int> arrays)
+        {
+            int max = 0;
+            for (int i =0; i< arrays.Count; i++)
+            {
+                if (max < arrays[i]) max = arrays[i];
+            }
+            return max;
+        }
+
+        static public int ViTriGTNN(List<int> arrays)
+        {
+            int timmax = GTLN(arrays);
+            int min = timmax;
+            int vitri = 0;
+            for (int i =0; i < arrays.Count; i++)
+            {
+                if (min > arrays[i]) min = arrays[i];
+            }
+            for (int i= 0; i < arrays.Count; i++)
+            {
+                if (min == arrays[i]) vitri = i;
+            }
+            return vitri;
+        }
+
+        static public int DemSoChinhPhuong(List<int> arrays)
+        {
+            int dem = 0;
+            for (int i = 0; i < arrays.Count; i++)
+            {
+                if (Math.Sqrt(arrays[i]) % 1 == 0) dem += 1;
+            }
+            return dem;
+        }
+
+        static public int ThayTheSoAm(List<int> arrays)
+        {
+            for (int i = 0; i < arrays.Count; i++)
+            {
+                if (arrays[i]<0) arrays[i] = 0;
+            }
+        }
     }
 }

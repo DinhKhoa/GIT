@@ -1,4 +1,6 @@
-﻿namespace Array
+﻿using System.Net.Mail;
+
+namespace Array
 {
     public class Program
     {
@@ -23,8 +25,20 @@
             {
                 Console.WriteLine("So thu {0} la: {1}",i , arrays[i]);
             }
-            // pull/ merge request
-            Console.Write("Tong la: " + DemSoChinhPhuong(arrays));
+            List<int> result = ThayTheSoAm(arrays);
+            for (int i = 0; i < result.Count; i++)
+            {
+                Console.WriteLine(result[i]);
+            }
+            //
+            //Console.WriteLine("~~~SAu khi chay ham~~~");
+            //for (int i = 0; i < arrays.Count ; i++)
+            //{
+            //    Console.WriteLine(arrays[i]);
+            //}
+
+            // value type || reference type
+
             //Console.Write("Gia tri lon nhat la " + GTLN(arrays))
             // ham tinh tong
             // ham tinh tong so nguyen to trong mang
@@ -45,17 +59,21 @@
         static public int TinhTongSoNguyenTo(List<int> arrays)
         {
             int sum = 0;   
-            for (int i =0; i < arrays.Count; i++)
+            for (int i = 0; i < arrays.Count; i++)
             {
                 // Kiem tra so nguyen to
-                int SoUoc = 0;
-                for (int j = 2; j <= (arrays[i]/2); j++)
-                {
-                    if (arrays[i] % j == 0) SoUoc += 1;
-                } 
-                if (SoUoc == 0) sum += arrays[i];
+                if (KiemTraSoNguyenTo(arrays[i])) sum += arrays[i];
             }
             return sum;
+        }
+
+        static private bool KiemTraSoNguyenTo(int number)
+        {
+            for (int i = 2; i < number / 2; i++)
+            {
+                if (number % i == 0) return false;
+            }
+            return true;
         }
 
         static public int TinhTongSoHoanHao(List<int> arrays)
@@ -63,76 +81,83 @@
             int sum = 0;
             for (int i = 0;i < arrays.Count; i++)
             {
-                int TongUoc = 0;
-                for (int j = 1; j < arrays[i]; j++)
+                int tongUoc = 0;
+                for (int j = 1; j < arrays[i] / 2; j++)
                 {
-                    if (arrays[i] % j == 0) TongUoc += j;
+                    if (arrays[i] % j == 0) tongUoc += j;
                 }
-                if (arrays[i] == TongUoc) sum += arrays[i];
+                if (arrays[i] == tongUoc) sum += arrays[i];
             }
             return sum;
         }
 
-        static public int TinhTrungBinhCacSoLeViTriChan(List<int> arrays)
+        static public double TinhTrungBinhCacSoLeViTriChan(List<int> arrays)
         {
             int sum = 0; 
-            int dem = 0;
-            for (int i = 0; i < arrays.Count; i++)
+            int count = 0;
+            for (int i = 0; i < arrays.Count; i+=2)
             {
-                if ( i % 2 == 0)
+                if (arrays[i] % 2 != 0)
                 {
-                    if (arrays[i] % 2 != 0)
-                    {
-                        sum += arrays[i];
-                        dem += 1;
-                    }
+                    sum += arrays[i];
+                    count += 1;
                 }
             }
-            return ( sum / dem );
+            return ((double)sum / count);
         }
 
-        static public int GTLN(List<int> arrays)
+        static public int FindMax(List<int> arrays)
         {
-            int max = 0;
-            for (int i =0; i< arrays.Count; i++)
+            int max = arrays[0];
+            for (int i = 1; i< arrays.Count; i++)
             {
                 if (max < arrays[i]) max = arrays[i];
             }
             return max;
         }
 
-        static public int ViTriGTNN(List<int> arrays)
+        static public List<int> IndexsOfMin(List<int> arrays)
         {
-            int timmax = GTLN(arrays);
-            int min = timmax;
-            int vitri = 0;
-            for (int i =0; i < arrays.Count; i++)
+            List<int> indexs = new List<int>();
+            int min = arrays[0];
+            for (int i = 1; i < arrays.Count; i++)
             {
                 if (min > arrays[i]) min = arrays[i];
             }
-            for (int i= 0; i < arrays.Count; i++)
+            for (int i = 0; i < arrays.Count; i++)
             {
-                if (min == arrays[i]) vitri = i;
+                if (min == arrays[i]) indexs.Add(i);
             }
-            return vitri;
+            return indexs;
         }
 
         static public int DemSoChinhPhuong(List<int> arrays)
         {
-            int dem = 0;
+            int count = 0;
             for (int i = 0; i < arrays.Count; i++)
             {
-                if (Math.Sqrt(arrays[i]) % 1 == 0) dem += 1;
+                //if (Math.Sqrt(arrays[i]) % 1 == 0) count += 1;
+                if (Math.Pow(Math.Sqrt(arrays[i]), 2) == arrays[i]) count++;
             }
-            return dem;
+            return count;
         }
 
-        static public int ThayTheSoAm(List<int> arrays)
+        static public List<int> ThayTheSoAm(List<int> arrays)
         {
-            for (int i = 0; i < arrays.Count; i++)
-            {
-                if (arrays[i]<0) arrays[i] = 0;
-            }
+            // sap xep tang dan
+            for (int i = 0; i < arrays.Count -1; i++)
+                for (int j = i + 1; j < arrays.Count; j++)
+                {
+                    if (arrays[i] > arrays[j])
+                    {
+                        // swap 2 so
+                        int temp = arrays[i];
+                        arrays[i] = arrays[j];
+                        arrays[j] = temp;
+                    }
+                }
+            // quick sort
+            return arrays;
         }
     }
 }

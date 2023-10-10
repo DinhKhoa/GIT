@@ -25,7 +25,8 @@ namespace Array
             {
                 Console.WriteLine("So thu {0} la: {1}",i , arrays[i]);
             }
-            List<int> result = ThayTheSoAm(arrays);
+            List<int> result = XoaSoAm(arrays);
+            Console.WriteLine("~~~~");
             for (int i = 0; i < result.Count; i++)
             {
                 Console.WriteLine(result[i]);
@@ -142,10 +143,45 @@ namespace Array
             return count;
         }
 
-        static public List<int> ThayTheSoAm(List<int> arrays)
+        static public List<int> XoaSoAm(List<int> arrays)
+        {
+            //List<int> result = new List<int>();
+            //for (int i = 0; i < arrays.Count; i++)
+            //{
+            //    if (arrays[i] >= 0) result.Add(i);
+            //}
+            //return result;
+            // 1 2 -3 -4 -5
+            // 1 2 -4 -5 -5
+            // 1 2 -4 -5
+            // 1 2 -5
+
+            // length 3 arrays.Count 5;
+            for (int i = 0; i < arrays.Count; i++)
+            {
+                if (arrays[i] < 0)
+                {
+                    //// remove arrays[i]
+                    //for (int j = i; j < arrays.Count -1 ; j++)
+                    //{
+                    //    arrays[j] = arrays[j + 1];
+                    //}
+                    //i--;
+                    //arrays.RemoveRange(arrays.Count - 1, 1);
+                    arrays.RemoveRange(i, 1); // Remove at
+                    i--;
+                }
+            }
+            //for (int i = 0; i < length; i++)
+            //{
+            //    Console.WriteLine(arrays[i]);
+            //}
+            return arrays;
+        }
+        static public List<int> SapXep(List<int> arrays)
         {
             // sap xep tang dan
-            for (int i = 0; i < arrays.Count -1; i++)
+            for (int i = 0; i < arrays.Count - 1; i++)
                 for (int j = i + 1; j < arrays.Count; j++)
                 {
                     if (arrays[i] > arrays[j])
@@ -155,8 +191,8 @@ namespace Array
                         arrays[i] = arrays[j];
                         arrays[j] = temp;
                     }
+
                 }
-            // quick sort
             return arrays;
         }
     }

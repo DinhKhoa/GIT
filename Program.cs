@@ -35,7 +35,8 @@ namespace Array
             //}
 
             //Goi ham
-            TongPhanTuGiongNhau(arrays1);
+            //TongPhanTuGiongNhau(arrays1);
+
             Console.WriteLine("~~~~");
             //List<int> result = GhepHaiMang_C2(arrays1, arrays2);
             //for (int i = 0; i < result.Count; i++)

@@ -477,5 +477,27 @@ namespace Array
             }
             Console.WriteLine(sum);
         }
+        static public void TongPhanTuGiongNhau_C2(List<int> arrays1)
+        {
+            int sum = 0;
+            Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
+            foreach (var number in arrays1)
+            {
+                if (!keyValuePairs.ContainsKey(number))
+                {
+                    keyValuePairs.Add(number, 1);
+                }
+                else
+                {
+                    keyValuePairs.TryGetValue(number, out int value);
+                    keyValuePairs[number]++;
+                }
+            }
+            foreach (var number in keyValuePairs.Keys)
+            {
+                if (keyValuePairs[number] != 1) sum += keyValuePairs[number];
+            }
+            Console.WriteLine(sum);
+        }
     }
 }

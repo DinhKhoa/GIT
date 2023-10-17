@@ -454,10 +454,8 @@ namespace Array
                 Console.WriteLine("Number {0}: tan suat {1}", number, keyValuePairs[number]);
             }
         }
-
-        static public void TongPhanTuGiongNhau(List<int> arrays1)
+        static public void SoLanXuatHienCuaPhanTu_C3(List<int> arrays1)
         {
-            int sum = 0;
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             foreach (var number in arrays1)
             {
@@ -473,9 +471,8 @@ namespace Array
             }
             foreach (var number in keyValuePairs.Keys)
             {
-                if (keyValuePairs[number] != 1) sum += keyValuePairs[number];
+                Console.WriteLine("Number {0}: tan suat {1}", number, keyValuePairs[number]);
             }
-            Console.WriteLine(sum);
         }
     }
 }

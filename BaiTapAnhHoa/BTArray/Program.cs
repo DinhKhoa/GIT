@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel.Design;
 using System.Net.Mail;
 
-namespace Array
+namespace BTArray
 {
     public class Program
     {
-        static public void Main(string[] args)
+        public static void Main(string[] args)
         {
-            //Mang 1
             Console.Write("Nhap vao do dai mang 1: ");
-            //string input1 = Console.ReadLine();
-            //int number1 = int.Parse(input1);
             int number1 = int.Parse(Console.ReadLine());
             List<int> arrays1 = new List<int>();
             for (int i = 0; i < number1; i++)
@@ -62,7 +59,8 @@ namespace Array
             // 6 la so hoan hao vi` 6 co uoc la 1 2 3. va 1 + 2 +3 = 6
         }
 
-        static public int TinhTong(List<int> arrays)
+        // Bai 1
+        public static int TinhTong(List<int> arrays)
         {
             int sum = 0;
             for (int i = 0; i < arrays.Count; i++)
@@ -72,7 +70,8 @@ namespace Array
             return sum;
         }
 
-        static public int TinhTongSoNguyenTo(List<int> arrays)
+        // Bai 2
+        public static int TinhTongSoNguyenTo(List<int> arrays)
         {
             int sum = 0;
             for (int i = 0; i < arrays.Count; i++)
@@ -82,8 +81,7 @@ namespace Array
             }
             return sum;
         }
-
-        static private bool KiemTraSoNguyenTo(int number)
+        private static bool KiemTraSoNguyenTo(int number)
         {
             for (int i = 2; i < number / 2; i++)
             {
@@ -92,7 +90,8 @@ namespace Array
             return true;
         }
 
-        static public int TinhTongSoHoanHao(List<int> arrays)
+        // Bai 3
+        public static int TinhTongSoHoanHao(List<int> arrays)
         {
             int sum = 0;
             for (int i = 0; i < arrays.Count; i++)
@@ -107,7 +106,8 @@ namespace Array
             return sum;
         }
 
-        static public double TinhTrungBinhCacSoLeViTriChan(List<int> arrays)
+        // Bai 4
+        public static double TinhTrungBinhCacSoLeViTriChan(List<int> arrays)
         {
             int sum = 0;
             int count = 0;
@@ -122,7 +122,8 @@ namespace Array
             return ((double)sum / count);
         }
 
-        static public int FindMax(List<int> arrays)
+        // Bai 5
+        public static int FindMax(List<int> arrays)
         {
             int max = arrays[0];
             for (int i = 1; i < arrays.Count; i++)
@@ -132,7 +133,8 @@ namespace Array
             return max;
         }
 
-        static public List<int> IndexsOfMin(List<int> arrays)
+        // Bai 6
+        public static List<int> IndexsOfMin(List<int> arrays)
         {
             List<int> indexs = new List<int>();
             int min = arrays[0];
@@ -147,7 +149,8 @@ namespace Array
             return indexs;
         }
 
-        static public int DemSoChinhPhuong(List<int> arrays)
+        // Bai 7
+        public static int DemSoChinhPhuong(List<int> arrays)
         {
             int count = 0;
             for (int i = 0; i < arrays.Count; i++)
@@ -158,7 +161,8 @@ namespace Array
             return count;
         }
 
-        static public List<int> XoaSoAm(List<int> arrays)
+        // Bai 8
+        public static List<int> XoaSoAm(List<int> arrays)
         {
             //List<int> result = new List<int>();
             //for (int i = 0; i < arrays.Count; i++)
@@ -194,7 +198,8 @@ namespace Array
             return arrays;
         }
 
-        static public List<int> SapXep(List<int> arrays)
+        // Bai 9
+        public static List<int> SapXep(List<int> arrays)
         {
             // sap xep tang dan
             for (int i = 0; i < arrays.Count - 1; i++)
@@ -212,7 +217,8 @@ namespace Array
             return arrays;
         }
 
-        static public void PhanTuLonThuHai_C1(List<int> arrays)
+        // Bai 10
+        public static void PhanTuLonThuHai_C1(List<int> arrays)
         {
             int count = 0;
             for (int i = 0; i < arrays.Count - 1; i++)
@@ -240,8 +246,7 @@ namespace Array
                 Console.WriteLine("Khong co phan tu lon thu hai");
             }
         }
-
-        static public void PhanTuLonThuHai_C2(List<int> arrays)
+        public static void PhanTuLonThuHai_C2(List<int> arrays)
         {
             for (int i = 0; i < arrays.Count - 1; i++)
             {
@@ -272,7 +277,8 @@ namespace Array
             }
         }
 
-        static public List<int> ThemPhanTu_C1(List<int> arrays)
+        // Bai 11
+        public static List<int> ThemPhanTu_C1(List<int> arrays)
         {
             List<int> result = new List<int>();
             Console.Write("Nhap gia tri: ");
@@ -298,8 +304,7 @@ namespace Array
             if (index > arrays.Count - 1) result.Add(value);
             return result;
         }
-
-        static public void ThemPhanTu_C2(List<int> arrays)
+        public static void ThemPhanTu_C2(List<int> arrays)
         {
             Console.WriteLine("Nhap gia tri:");
             int number = int.Parse(Console.ReadLine());
@@ -313,7 +318,8 @@ namespace Array
             arrays[index] = number;
         }
 
-        static public List<int> GhepHaiMang_C1(List<int> arrays1, List<int> arrays2)
+        // Bai 12
+        public static List<int> GhepHaiMang_C1(List<int> arrays1, List<int> arrays2)
         {
             List<int> result = new List<int>();
             for (int i = 0; i < arrays1.Count; i++)
@@ -326,8 +332,7 @@ namespace Array
             }
             return result;
         }
-
-        static public List<int> GhepHaiMang_C2(List<int> arrays1, List<int> arrays2)
+        public static List<int> GhepHaiMang_C2(List<int> arrays1, List<int> arrays2)
         {
             List<int> result = new List<int>(new int[arrays1.Count + arrays2.Count]);
             for (int i = 0; i < arrays1.Count; i++)
@@ -341,7 +346,8 @@ namespace Array
             return result;
         }
 
-        static public void ChiaMangChanLe_C1(List<int> arrays1)
+        // Bai 13
+        public static void ChiaMangChanLe_C1(List<int> arrays1)
         {
             Console.WriteLine("~~~ Chan ~~~");
             for (int i = 0; i < arrays1.Count; i++)
@@ -354,8 +360,7 @@ namespace Array
                 if (arrays1[i] % 2 != 0) Console.WriteLine(arrays1[i]);
             }
         }
-
-        static public Tuple<List<int>, List<int>> ChiaMangChanLe_C2(List<int> arrays)
+        public static Tuple<List<int>, List<int>> ChiaMangChanLe_C2(List<int> arrays)
         {
             // thay so chan bang so 0
             List<int> evenNumbers = new List<int>();
@@ -374,7 +379,8 @@ namespace Array
             return Tuple.Create(evenNumbers, oddNumbers);
         }
 
-        static public List<int> CacPhanTuDuyNhat_C1(List<int> arrays1)
+        // Bai 14
+        public static List<int> CacPhanTuDuyNhat_C1(List<int> arrays1)
         {
             List<int> result = new List<int>();
             for (int i = 0; i < arrays1.Count; i++)
@@ -388,8 +394,7 @@ namespace Array
             }
             return result;
         }
-
-        static public void CacPhanTuDuyNhat_C2(List<int> arrays1)
+        public static void CacPhanTuDuyNhat_C2(List<int> arrays1)
         {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             foreach (var number in arrays1)
@@ -417,7 +422,8 @@ namespace Array
             }
         }
 
-        static public void SoLanXuatHienCuaPhanTu_C1(List<int> arrays1)
+        // Bai 15
+        public static void SoLanXuatHienCuaPhanTu_C1(List<int> arrays1)
         {
             for (int i = 0; i < arrays1.Count; i++)
             {
@@ -433,8 +439,7 @@ namespace Array
                 Console.WriteLine("Phan tu {0} xuat hien {1} lan", arrays1[i], count);
             }
         }
-
-        static public void SoLanXuatHienCuaPhanTu_C2(List<int> arrays1)
+        public static void SoLanXuatHienCuaPhanTu_C2(List<int> arrays1)
         {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             foreach (var number in arrays1)
@@ -455,7 +460,8 @@ namespace Array
             }
         }
 
-        static public void TongPhanTuGiongNhau(List<int> arrays1)
+        // Bai 16
+        public static void TongPhanTuGiongNhau(List<int> arrays1)
         {
             int sum = 0;
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();

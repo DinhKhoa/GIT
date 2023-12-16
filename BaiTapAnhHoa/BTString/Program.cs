@@ -4,8 +4,9 @@ using System.Net.Mail;
 using System.Net.NetworkInformation;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
-namespace Strings
+namespace BTString
 {
     public class Program
     {
@@ -16,30 +17,24 @@ namespace Strings
             string str = Console.ReadLine();
 
             //Goi ham:
-            ChuoiCon_C2(str);
+            TimChuoiDoiXungDaiNhat(str);
 
-            //string result = CatChuoi(str);
+
+            //int count = DemSoLuongTuChuaItNhatHaiNguyenAm(str);
+            //Console.WriteLine(count);
+
+
+            //string result = XoaKiTuGiongNhau(str);
             //Console.WriteLine(":" + result + ":");
 
-            //List<string> result = CatChuoi(str);
+            //List<string> result = CatCacTuTrongChuoi(str);
             //foreach (var item in result)
             //{
             //    Console.WriteLine(item);
             //}
         }
 
-
-        static public string DaoNguoc(string str)
-        {
-            string result = "";
-            for (int i = str.Length - 1; i >= 0; i--)
-            {
-                result = string.Concat(result, str[i]);
-            }
-            return result;
-        }
-
-
+        // Bai 1
         static public void DemChuSoKiTuDacBiet(string str)
         {
             int countOfCharacter = 0;
@@ -60,7 +55,7 @@ namespace Strings
             Console.WriteLine($" {countOfNumber} so\n {countOfCharacter} chu\n {countOfSpecialCharacter} ki tu dac biet\n");
         }
 
-
+        // Bai 2
         static public void SoTu(string str)
         {
             int sum = 1;
@@ -73,7 +68,7 @@ namespace Strings
             Console.WriteLine(sum);
         }
 
-
+        // Bai 3
         static public string ChuanHoaChuoi(string str)
         {
             string result = string.Empty;
@@ -105,7 +100,6 @@ namespace Strings
         static private string XoaKhoangTrongLienTiep(string str)
         {
             string result = string.Empty;
-            char space = ' ';
             for (int i = 0; i < str.Length; i++)
             {
                 if (str[i] != space)
@@ -120,7 +114,7 @@ namespace Strings
             return result;
         }
 
-
+        // Bai 4
         static public void ChuoiCon_C1(string str)
         {
             List<string> tapHopCon = new List<string>();
@@ -181,6 +175,33 @@ namespace Strings
                 Console.WriteLine("Khong phai chuoi con");
             }
         }
+        static public void ChuoiCon_C3(string str)
+        {
+            bool KT = false;
+            string result = string.Empty;
+            Console.Write("Nhap chuoi con can kiem tra: ");
+            string chuoiCon = Console.ReadLine();
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == chuoiCon[0])
+                {
+                    result = CatChuoiTheoChuoiCon(str, i, chuoiCon.Length);
+                    if (chuoiCon == result)
+                    {
+                        KT = true;
+                        break;
+                    }
+                }
+            }
+            if (KT)
+            {
+                Console.WriteLine("Chuoi con");
+            }
+            else
+            {
+                Console.WriteLine("Khong phai la chuoi con");
+            }
+        }
         static private string CatChuoi(string str, int index, int count)
         {
             string result = string.Empty;
@@ -190,8 +211,17 @@ namespace Strings
             }
             return result;
         }
+        static private string CatChuoiTheoChuoiCon(string str, int index, int count)
+        {
+            string result = string.Empty;
+            for (int i = index; i < count + index; i++)
+            {
+                result += str[i];
+            }
+            return result;
+        }
 
-
+        // Bai 5
         static public string KiemTraInHoaInThuong(string str)
         {
             string result = string.Empty;
@@ -229,7 +259,7 @@ namespace Strings
             return (char)((int)ch + 32);
         }
 
-
+        // Bai 6
         static public void KiemTraDoiXung_C1(string str)
         {
             string result = string.Empty;
@@ -269,7 +299,7 @@ namespace Strings
             }
         }
 
-
+        // Bai 7
         static public string InHoaKiTuDau_C1(string str)
         {
             char space = ' ';
@@ -324,21 +354,21 @@ namespace Strings
             return result;
         }
 
-
-        static public List<string> CatChuoi(string str)
+        // Bai 8
+        static public List<string> CatCacTuTrongChuoi(string str)
         {
             string chuanHoa = ChuanHoaChuoi(str);
             List<string> result = new List<string>();
             List<int> indexes = new List<int>() { 0 };
-            for (int i = 1; i < chuanHoa.Length - 1; i++)
+            for (int i = 1; i < chuanHoa.Length; i++)
             {
-                if (chuanHoa[i - 1] == space || chuanHoa[i + 1] == space)
+                if (chuanHoa[i] == space)
                 {
-                    indexes.Add(i);
+                    indexes.Add(i - 1);
+                    indexes.Add(i + 1);
                 }
             }
             indexes.Add(chuanHoa.Length - 1);
-            int j = 0;
             for (int i = 0; i < indexes.Count; i += 2)
             {
                 int start = indexes[i];
@@ -357,7 +387,7 @@ namespace Strings
             return result;
         }
 
-
+        // Bai 9
         static public void XoaKiTu(string str)
         {
             string result = string.Empty;
@@ -372,15 +402,195 @@ namespace Strings
             Console.WriteLine(result);
         }
 
+        // Bai 10
+        static public string XoaKiTuLienKeGiongNhau(string str)
+        {
+            string result = string.Empty;
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                if (str[i] != str[i + 1]) result += str[i];
+            }
+            result += str[str.Length - 1];
+            return result;
+        }
 
-        //11. Nhập vào 1 chuỗi, xoá các kí tự liền kề giống nhau: "aaabbbccccddaa" => "abcda"
-        
-        //12. Nhập vào 1 chuỗi, xoá các kí tự bị trùng có trong chuỗi: "aaabbbccccddaa" => "abcd"
-        
-        //13. Nhập 1 chuỗi, in ra tất cả các chuỗi có thể tạo từ các kí tự đó và có cùng độ dài: "abc" => aaa, aab, aac, aba,....., ccc
-       
-        //14. tìm độ dài chuỗi con lớn nhất mà các ký tự không trùng lặp: “pickoutthelongestsubstring” => “ubstring”
-        
-        //15. Tìm chuỗi đối xứng dài nhất của 1 chuỗi cho trước
+        // Bai 11
+        static public string XoaKiTuGiongNhau_C1(string str)
+        {
+            List<char> existedChars = new List<char>();
+            string result = string.Empty;
+            foreach (char ch in str)
+            {
+                if (!existedChars.Contains(ch))
+                {
+                    existedChars.Add(ch);
+                    result += ch;
+                }
+            }
+            return result;
+        }
+        static public string XoaKiTuGiongNhau_C2(string str)
+        {
+            List<char> existedChars = new List<char>();
+            string result = string.Empty;
+            foreach (char ch in str)
+            {
+                if (!existedChars.Contains(ch))
+                {
+                    existedChars.Add(ch);
+                    result += ch;
+                }
+            }
+            return result;
+        }
+
+
+        //12. Nhập 1 chuỗi, in ra tất cả các chuỗi có thể tạo từ các kí tự đó và có cùng độ dài: "abc" => aaa, aab, aac, aba,....., ccc
+
+        // Bai 13
+        static public void TimDoDaiChuoiConCoKiTuKhongTrungLapLonNhat(string str)
+        {
+            List<string> chuoiCons = new List<string>();
+            for (int i = 0; i < str.Length; i++)
+            {
+                List<char> existedChars = new List<char>();
+                string result = string.Empty;
+                for (int j = i; j < str.Length; j++)
+                {
+                    if (!existedChars.Contains(str[j]))
+                    {
+                        existedChars.Add(str[j]);
+                        result += str[j];
+                    }
+                    else break;
+                }
+                chuoiCons.Add(result);
+            }
+            string longestString = chuoiCons[0];
+            for (int i = 1; i < chuoiCons.Count; i++)
+            {
+                if (longestString.Length < chuoiCons[i].Length) longestString = chuoiCons[i];
+            }
+            Console.WriteLine(longestString);
+        }
+
+        // Bai 14
+        static public void TimChuoiDoiXungDaiNhat(string str)
+        {
+            List<string> chuoiDoiXung = new List<string>();
+            string longestString = string.Empty;
+            for (int i = 0; i < str.Length; i++)
+            {
+                for (int j = str.Length - 1; j >= 1; j--)
+                {
+                    string result = TimChuoi(str, i, j);
+                    if (KiemTraDoiXung(result))
+                    {
+                        if (longestString.Length < result.Length) longestString = result;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine(longestString);
+        }
+        static private string TimChuoi(string str, int start, int end)
+        {
+            string result = string.Empty;
+            for (int i = start; i <= end; i++)
+            {
+                result += str[i];
+            }
+            return result;
+        }
+        static private bool KiemTraDoiXung(string str)
+        {
+            string result = string.Empty;
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                result += str[i];
+            }
+            bool KT = false;
+            if (str == result) KT = true;
+            return KT;
+        }
+
+        // Bai 15
+        static public void TuDaiNhat(string str)
+        {
+            List<string> cacTu = CatCacTuTrongChuoi(str);
+            List<int> doDai = new List<int>();
+            for (int i = 0; i < cacTu.Count; i++)
+            {
+                doDai.Add(cacTu[i].Length);
+            }
+            int maxLength = TimPhanTuLonNhat(doDai);
+            for (int i = 0; i < cacTu.Count; i++)
+            {
+                if (maxLength == cacTu[i].Length)
+                {
+                    Console.WriteLine(cacTu[i]);
+                }
+            }
+            for (int i = 0; i < cacTu.Count; i++)
+            {
+                if (maxLength == cacTu[i].Length) Console.WriteLine(cacTu[i]);
+            }
+        }
+        static private int TimPhanTuLonNhat(List<int> arrays)
+        {
+            int max = arrays[0];
+            for (int i = 1; i < arrays.Count; i++)
+            {
+                if (max < arrays[i]) max = arrays[i];
+            }
+            return max;
+        }
+
+        // Bai 16
+        static public int DemSoLuongTuChuaItNhatHaiNguyenAm(string str)
+        {
+            bool KT = false;
+            int count = 0;
+            List<string> listTu = CatCacTuTrongChuoi(str);
+            for (int i = 0; i < listTu.Count; i++)
+            {
+                KT = KiemTraSoLuongNguyenAm(listTu[i]);
+                if (KT) count++;
+            }
+            return count;
+        }
+        static private bool KiemTraSoLuongNguyenAm(string str)
+        {
+            bool KT = false;
+            int count = 0;
+            List<char> nguyenAms = new List<char>() { 'u', 'e', 'o', 'a', 'i', 'U', 'E', 'O', 'A', 'I', };
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (nguyenAms.Contains(str[i])) count++;
+            }
+            if (count >= 2) KT = true;
+            return KT;
+        }
+
+        // Bai 17
+        static public void DaoNguocCacTuVaCacChuTrongChuoi(string str)
+        {
+            List<string> listTu = CatCacTuTrongChuoi(str);
+            List<string> listDaoNguocChuoi = new List<string>();
+            for (int i = listTu.Count - 1; i >= 0; i--)
+            {
+                listDaoNguocChuoi.Add(DaoNguocChuoi(listTu[i]));
+            }
+            Console.WriteLine(":" + string.Join(" ",listDaoNguocChuoi) + ":");
+        }
+        static private string DaoNguocChuoi(string str)
+        {
+            string result = string.Empty;
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                result = string.Concat(result, str[i]);
+            }
+            return result;
+        }
     }
 }

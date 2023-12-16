@@ -90,21 +90,21 @@ namespace BTBacktracking
             }
         }
 
-        public static void BaiToanConHau(int cot, int n)
+        public static void BaiToanConHau(int hang, int n)
         {
-            for (int hang = 0; hang < n; hang++)
+            for (int cot = 0; cot < n; cot++)
             {
-                if (!checkColumn[cot] && !dcx[n - 1 - (hang - cot)] && !dcn[hang + cot])
+                if (!checkColumn[cot] && !dcx[n - 1 - (hang - cot)] && !dcn[cot + hang])
                 {
-                    result[cot] = hang;
+                    result[hang] = cot;
                     checkColumn[cot] = true;
                     dcx[n - 1 - (hang - cot)] = true;
-                    dcn[hang + cot] = true;
-                    if (cot == n - 1) InBanCoConHau();
-                    else BaiToanConHau(cot + 1, n);
+                    dcn[cot + hang] = true;
+                    if (hang == n - 1) InBanCoConHau();
+                    else BaiToanConHau(hang + 1, n);
                     checkColumn[cot] = false;
                     dcx[n - 1 - (hang - cot)] = false;
-                    dcn[hang + cot] = false;
+                    dcn[cot + hang] = false;
                 }
             }
         }
